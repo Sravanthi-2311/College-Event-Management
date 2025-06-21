@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: white;
+        }
+
+        /* Header section with logo and navigation buttons */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #e8ebed;
+            height: 120px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: #ecf0f1;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 25px;
+            background-color: #131212;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+        }
+
+        /* Image slider container */
+        .image-slider-container {
+            position: relative;
+            width: 100%;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(40%);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Text overlay on image */
+        .text-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #ecf0f1;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        /* Controls for the slider */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ecf0f1;
+            border: none;
+            padding: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Main Heading */
+        .main-heading {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: #34495e;
+        }
+
+        /* Continuous horizontal scrolling for recently completed events */
+        .scroll-container {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+        .scroll-wrapper {
+            display: flex;
+            flex-direction: row;
+            width: 200%;
+            animation: scroll-right 10s linear infinite;
+        }
+
+        .container {
+            min-width: 20%;
+            box-sizing: border-box;
+            padding: 10px;
+            flex-shrink: 0;
+            text-align: center;
+            border-radius: 5px;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            height: 100%;
+        }
+
+        .container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Right to Left Scrolling Animation */
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Footer section with social media icons, email, and contact details */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #34495e;
+            margin-top: 40px;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        /* Media queries for responsiveness */
+        @media screen and (max-width: 768px) {
+            .container {
+                min-width: 50%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section with logo and navigation buttons -->
+    <div class="header">
+        <img src="logo.png" class="logo" alt="logo">
+        <div class="nav-buttons">
+            <a href="home.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="loginpage.html">Logout</a>
+        </div>
+    </div>
+
+    <!-- Image Slider Section -->
+    <div class="image-slider-container">
+        <div class="slide active">
+            <img src="11.jpg" alt="Slide 1">
+            <div class="text-overlay">Welcome to the Event Management System</div>
+        </div>
+        <div class="slide">
+            <img src="12.jpg" alt="Slide 2">
+            <div class="text-overlay">Explore Upcoming Events</div>
+        </div>
+        <div class="slide">
+            <img src="13.jpg" alt="Slide 3">
+            <div class="text-overlay">Join the Excitement</div>
+        </div>
+        <div class="slider-controls">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- Main Heading -->
+    <h1 class="main-heading">RECENTLY COMPLETED EVENTS</h1>
+
+    <!-- Recently Completed Events Section -->
+    <div class="scroll-container" id="scrollContainer">
+        <div class="scroll-wrapper">
+            <div class="container">
+                <img src="2.jpg" alt="Event 1">
+            </div>
+            <div class="container">
+                <img src="3.jpg" alt="Event 2">
+            </div>
+            <div class="container">
+                <img src="4.jpg" alt="Event 3">
+            </div>
+            <div class="container">
+                <img src="5.jpg" alt="Event 4">
+            </div>
+            <!-- Duplicate the containers for seamless scrolling -->
+            <div class="container">
+                <img src="2.jpg" alt="Event 1">
+            </div>
+            <div class="container">
+                <img src="3.jpg" alt="Event 2">
+            </div>
+            <div class="container">
+                <img src="4.jpg" alt="Event 3">
+            </div>
+            <div class="container">
+                <img src="5.jpg" alt="Event 4">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <div class="footer-info">
+            <p>Email: info@events.com</p>
+            <p>Contact: +123 456 7890</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com">
+                <img src="https://img.freepik.com/premium-vector/square-linkedin-button-isolated-white-background_318-10083.jpg"
+                    alt="LinkedIn">
+            </a>
+            <a href="https://www.instagram.com">
+                <img src="https://as1.ftcdn.net/v2/jpg/04/60/55/54/1000_F_460555444_x8Q4yVi6j8frkmHMQdL92eC9VQfFbhd1.jpg"
+                    alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com">
+                <img src="https://img.freepik.com/free-icon/facebook-logo_318-9850.jpg" alt="Facebook">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for the Image Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Automatically change slides every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+
+</html>

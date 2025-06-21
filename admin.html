@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        /* Embedded CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #f0f2f5;
+        }
+
+        #sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #sidebar h1 {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        #sidebar button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #sidebar button:hover {
+            background-color: #777;
+        }
+
+        #content {
+            flex-grow: 1;
+            padding: 30px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+        }
+
+        form input {
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 12px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        #coordinatorList {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+        }
+
+        #coordinatorList p {
+            font-size: 1em;
+            margin: 5px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h1>Admin Dashboard</h1>
+        <button onclick="showForm()">Add Coordinator</button>
+        <button onclick="fetchCoordinators()">List Coordinators</button>
+    </div>
+
+    <div id="content">
+        <h2 id="formTitle">Add New Coordinator</h2>
+        
+        <!-- Form to Add Coordinator -->
+        <form id="addCoordinatorForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="phone" placeholder="Phone" required>
+            <button type="submit">Add Coordinator</button>
+        </form>
+
+        <!-- Coordinator List Display -->
+        <div id="coordinatorList" style="display: none;">
+            <h3>Coordinators</h3>
+        </div>
+    </div>
+
+    <script>
+        // Submit form to add coordinator
+        document.getElementById('addCoordinatorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/addCoordinator', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                alert(result.message);
+                showCoordinators();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Fetch and display coordinators
+        async function showCoordinators() {
+            try {
+                const response = await fetch('/getCoordinators');
+                const coordinators = await response.json();
+                const list = document.getElementById('coordinatorList');
+                list.innerHTML = '<h3>Coordinators</h3>' + coordinators.map(c => `<p>${c.username} (${c.email})</p>`).join('');
+                list.style.display = 'block';
+                document.getElementById('addCoordinatorForm').style.display = 'none';
+                document.getElementById('formTitle').textContent = 'Coordinator List';
+            } catch (error) {
+                console.error('Error fetching coordinators:', error);
+            }
+        }
+
+        // Functions to toggle display between form and list
+        function showForm() {
+            document.getElementById('addCoordinatorForm').style.display = 'block';
+            document.getElementById('coordinatorList').style.display = 'none';
+            document.getElementById('formTitle').textContent = 'Add New Coordinator';
+        }
+
+        function fetchCoordinators() {
+            showCoordinators();
+        }
+
+        // Initially show form and hide list
+        showForm();
+    </script>
+</body>
+</html>

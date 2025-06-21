@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Management System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f5;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://static.vecteezy.com/system/resources/thumbnails/000/677/302/small/abstract-technology-banner-background.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-text h3 {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+    color: #483d8b;
+}
+
+.event-text p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+
+        header h1 {
+            font-family: 'Poppins', serif;
+            font-size: 3.5em;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            letter-spacing: 3px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .events-section {
+            width: 70%;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .events-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            border-bottom: 3px solid #483d8b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #483d8b;
+        }
+
+        .dropdown-btn {
+            background-color: #483d8b;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #36307a;
+            transform: scale(1.02);
+        }
+
+        .dropdown-content {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .event-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .event-item img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .event-text {
+            flex-grow: 1;
+        }
+
+        .register-btn {
+            background-color: #ff4500;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background-color: #ff6347;
+            transform: scale(1.08);
+        }
+
+        .past-events {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .past-event img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .past-event img:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Events</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Upcoming Events Section -->
+        <div class="events-section">
+            <h2>Upcoming Events</h2>
+
+            <!-- Technical Events -->
+            <button class="dropdown-btn">Technical</button>
+            <div class="dropdown-content technical-events">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <!-- Non-Technical Events -->
+            <button class="dropdown-btn">Non-Technical</button>
+            <div class="dropdown-content nontechnical-events">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <!-- Cultural Events -->
+            <button class="dropdown-btn">Cultural</button>
+            <div class="dropdown-content cultural-events">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <!-- Sports Events -->
+            <button class="dropdown-btn">Sports</button>
+            <div class="dropdown-content sports-events">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <!-- Workshops -->
+            <button class="dropdown-btn">Workshops</button>
+            <div class="dropdown-content workshops-events">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Past Events Section -->
+        <div class="events-section">
+            <h2>Past Events</h2>
+            <div class="past-events">
+                <div class="past-event"><img src="2.jpg" alt="Past Event 1"></div>
+                <div class="past-event"><img src="3.jpg" alt="Past Event 2"></div>
+                <div class="past-event"><img src="4.jpg" alt="Past Event 3"></div>
+                <!-- Add more past event images as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Fetch and display event
+    // Fetch and display events
+    fetch('/events')
+        .then(response => response.json())
+        .then(events => {
+            // Sort events by category and populate the respective sections
+            events.forEach(event => {
+                const eventItem = `
+                    <div class="event-item">
+                        <img src="/uploads/${event.event_image}" alt="${event.name}">
+                        <div class="event-text">
+                            <h3>${event.name}</h3>
+                            <p><strong>Description:</strong> ${event.description}</p>
+                            <p><strong>Date:</strong> ${event.event_date}</p>
+                            <p><strong>Location:</strong> ${event.location}</p>
+                            <p><strong>Start Time:</strong> ${event.start_time}</p>
+                            <p><strong>End Time:</strong> ${event.end_time}</p>
+                            <button class="register-btn" onclick="window.location.href='registerevent.html'">Register</button>
+                        </div>
+                    </div>
+                `;
+
+                if (event.category.toLowerCase() === 'technical') {
+                    document.querySelector('.technical-events').innerHTML += eventItem;
+                } else if (event.category.toLowerCase() === 'non-technical') {
+                    document.querySelector('.nontechnical-events').innerHTML += eventItem;
+                } else if (event.category.toLowerCase() === 'cultural') {
+                    document.querySelector('.cultural-events').innerHTML += eventItem;
+                } else if (event.category.toLowerCase() === 'sports') {
+                    document.querySelector('.sports-events').innerHTML += eventItem;
+                } else if (event.category.toLowerCase() === 'workshops') {
+                    document.querySelector('.workshops-events').innerHTML += eventItem;
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching events:', error);
+        });
+
+    // JavaScript for toggling the dropdown content
+    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const dropdownContent = button.nextElementSibling;
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+</body>
+
+</html>

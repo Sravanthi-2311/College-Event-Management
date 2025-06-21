@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - College Event</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        header {
+            background: linear-gradient(rgba(0, 0, 128, 0.7), rgba(72, 61, 139, 0.7)),
+            url('about1.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+       
+        .container-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container-img:hover {
+            transform: scale(1.05);
+        }
+        .section {
+            padding: 60px 15px;
+        }
+        .section h2 {
+            margin-bottom: 30px;
+        }
+        .section .row {
+            margin-bottom: 40px;
+        }
+        .section .col-md-6 {
+            margin-bottom: 20px;
+        }
+        .section div {
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .section div:hover {
+            background-color: #e9ecef;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .section p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <!-- Introduction -->
+        <div class="section">
+            <h2>About Our College Events</h2>
+            <p>Welcome to our college events page! Our college hosts a variety of events throughout the year, including technical and non-technical activities, cultural festivals, workshops, and sports tournaments. These events provide students with opportunities to enhance their skills, engage with peers, and build a sense of community.</p>
+        </div>
+
+        <!-- Container 1: Technical -->
+        <div class="row section">
+            <div class="col-md-6">
+                <img src="about2.jpeg" alt="Technical Event" class="container-img">
+            </div>
+            <div class="col-md-6">
+                <h3>Technical Events</h3>
+                <p>Our technical events include coding competitions, hackathons, and seminars on emerging technologies. These events are designed to foster technical skills and innovation among students.</p>
+            </div>
+        </div>
+
+        <!-- Container 2: Non-Technical -->
+        <div class="row section">
+            <div class="col-md-6 order-md-2">
+                <img src="about3.jpg" alt="Non-Technical Event" class="container-img">
+            </div>
+            <div class="col-md-6">
+                <h3>Non-Technical Events</h3>
+                <p>Our non-technical events include quizzes, debates, and literary activities. These events provide a platform for students to showcase their knowledge and communication skills in various non-technical fields.</p>
+            </div>
+        </div>
+
+        <!-- Container 3: Cultural -->
+        <div class="row section">
+            <div class="col-md-6">
+                <img src="about4.jpg" alt="Cultural Event" class="container-img">
+            </div>
+            <div class="col-md-6">
+                <h3>Cultural Festivals</h3>
+                <p>Our cultural festivals celebrate diversity through music, dance, food, and art. These events are a highlight of the academic year and foster a sense of community and cultural appreciation.</p>
+            </div>
+        </div>
+
+        <!-- Container 4: Workshops -->
+        <div class="row section">
+            <div class="col-md-6 order-md-2">
+                <img src="about5.jpg" alt="Workshop Event" class="container-img">
+            </div>
+            <div class="col-md-6">
+                <h3>Workshops</h3>
+                <p>We organize workshops on various topics, including skill development, career guidance, and personal growth. These workshops provide practical knowledge and hands-on experience in different areas.</p>
+            </div>
+        </div>
+
+        <!-- Container 5: Sports -->
+        <div class="row section">
+            <div class="col-md-6">
+                <img src="about6.jpeg" alt="Sports Event" class="container-img">
+            </div>
+            <div class="col-md-6">
+                <h3>Sports Tournaments</h3>
+                <p>Our sports tournaments feature a range of athletic competitions, from team sports to individual events. These tournaments encourage students to stay active, work as a team, and demonstrate their athletic abilities.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(rgba(0, 0, 128, 0.7), rgba(72, 61, 139, 0.7)),
+            url('https://t4.ftcdn.net/jpg/02/76/08/07/360_F_276080724_hltnCyDjcqAyRtLzDYo3T2jXbBtCD7fl.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            width: 80%; /* Align with content width */
+            max-width: 1200px; /* Max width */
+            margin: 0 auto; /* Center header */
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            font-family: 'Poppins', serif;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 80%; /* Adjust width of the container */
+            max-width: 1200px; /* Set a maximum width */
+            height: calc(100vh - 100px); /* Adjust height to account for the header */
+            margin: 0 auto; /* Center the container */
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 25%; /* Adjusted width */
+            background-color: #fff;
+            padding: 20px;
+            border-right: 2px solid #ddd;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar:hover {
+            width: 30%; /* Expands on hover */
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+            color: #483d8b;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 12px 20px; /* Increased padding */
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #e6e6fa;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1em; /* Slightly larger font size */
+        }
+
+        .sidebar ul li:hover {
+            background-color: #d3d3f1;
+            transform: scale(1.02); /* Slight zoom effect on hover */
+        }
+
+        /* Right Content Area */
+        .content {
+            width: 75%; /* Adjusted width */
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content h2 {
+            font-size: 1.5em;
+            color: #483d8b;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #483d8b;
+            padding-bottom: 10px;
+        }
+
+        .filter-buttons {
+            margin-bottom: 20px;
+        }
+
+        .filter-buttons button {
+            background-color: #483d8b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 16px;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #36307a;
+            transform: scale(1.02);
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: calc(33.333% - 10px);
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Gallery Page</h1>
+    </header>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <ul>
+                <li onclick="showCategory('all')">All Photos</li>
+                <li onclick="showCategory('technical')">Technical Events</li>
+                <li onclick="showCategory('non-technical')">Non-Technical</li>
+                <li onclick="showCategory('cultural')">Cultural</li>
+                <li onclick="showCategory('workshops')">Workshops</li>
+                <li onclick="showCategory('sports')">Sports</li>
+            </ul>
+        </div>
+
+        <!-- Right Content Area -->
+        <div class="content">
+            <h2 id="category-title">All Photos</h2>
+            <div class="filter-buttons">
+                <button onclick="filterByDate('all')">All Dates</button>
+                <button onclick="filterByDate('2024-09-01')">September 2024</button>
+                <button onclick="filterByDate('2024-08-01')">August 2024</button>
+                <!-- Add more date filters as needed -->
+            </div>
+            <div class="gallery" id="gallery">
+                <!-- Images for All Photos and default category (Technical Events) -->
+                <!-- Technical Events -->
+                <img src="2.jpg" alt="Technical Event 1" data-category="technical" data-date="2024-09-05">
+                <img src="3.jpg" alt="Technical Event 2" data-category="technical" data-date="2024-08-15">
+                <img src="5.jpg" alt="Technical Event 3" data-category="technical" data-date="2024-09-20">
+                <!-- Non-Technical -->
+                <img src="4.jpg" alt="Non-Technical Event 1" data-category="non-technical" data-date="2024-09-10">
+                <img src="nontech2.jpg" alt="Non-Technical Event 2" data-category="non-technical" data-date="2024-08-25">
+                <!-- Cultural -->
+                <img src="culutral1.jpg" alt="Cultural Event 1" data-category="cultural" data-date="2024-07-30">
+                <img src="cultural2.jpg" alt="Cultural Event 2" data-category="cultural" data-date="2024-09-15">
+                <!-- Workshops -->
+                <img src="workshop1.jpg" alt="Workshop 1" data-category="workshops" data-date="2024-08-05">
+                <img src="workshop2.jpg" alt="Workshop 2" data-category="workshops" data-date="2024-09-10">
+                <!-- Sports -->
+                <img src="sports1.jpeg" alt="Sports Event 1" data-category="sports" data-date="2024-09-25">
+                <img src="sports2.jpg" alt="Sports Event 2" data-category="sports" data-date="2024-08-30">
+                <!-- Add more images with category and date attributes -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            const categoryTitle = document.getElementById('category-title');
+            const gallery = document.getElementById('gallery');
+            
+            // Set category title
+            categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ');
+
+            // Show all images if category is 'all'
+            if (category === 'all') {
+                gallery.querySelectorAll('img').forEach(img => {
+                    img.style.display = 'block';
+                });
+            } else {
+                // Filter images based on category
+                gallery.querySelectorAll('img').forEach(img => {
+                    img.style.display = img.dataset.category === category ? 'block' : 'none';
+                });
+            }
+        }
+
+        function filterByDate(date) {
+            const images = document.querySelectorAll('#gallery img');
+            
+            images.forEach(img => {
+                if (date === 'all' || img.dataset.date === date) {
+                    img.style.display = 'block';
+                } else {
+                    img.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize with 'all' category
+        showCategory('all');
+    </script>
+</body>
+</html>
